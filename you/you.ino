@@ -12,7 +12,32 @@
 #define WEATHER_API_KEY "035cc27ca5ac27b05c80a10925f86716" // API key do OpenWeatherMap
 #define CITY_ID "3457359" // ID da cidade (São Paulo, Brasil por exemplo)
 
-
+String utf8ToAscii(String str) {
+  str.replace("ç", "c");
+  str.replace("á", "a");
+  str.replace("ã", "a");
+  str.replace("â", "a");
+  str.replace("é", "e");
+  str.replace("ê", "e");
+  str.replace("í", "i");
+  str.replace("ó", "o");
+  str.replace("õ", "o");
+  str.replace("ô", "o");
+  str.replace("ú", "u");
+  str.replace("ü", "u");
+  str.replace("Á", "A");
+  str.replace("Ã", "A");
+  str.replace("Â", "A");
+  str.replace("É", "E");
+  str.replace("Ê", "E");
+  str.replace("Í", "I");
+  str.replace("Ó", "O");
+  str.replace("Õ", "O");
+  str.replace("Ô", "O");
+  str.replace("Ú", "U");
+  str.replace("Ü", "U");
+  return str;
+}
 
 
 char ssid[] = "WELINTON";         // Nome da sua rede WiFi
@@ -93,14 +118,14 @@ void getWeather() {
   lcd.print(" C");
 
   // Aguarda 5 segundos para que a temperatura seja exibida
-  delay(5000);
+  delay(2000);
 
-  // Exibe a descrição do clima na segunda linha
-  lcd.clear();
-  lcd.setCursor(2, 0);
-  lcd.print("Clima Atual: ");
-  lcd.setCursor(0, 1);
-  lcd.print(description); // Exibe a descrição do clima
+// Exibe a descrição do clima na segunda linha
+lcd.clear();
+lcd.setCursor(2, 0);
+lcd.print("Clima Atual: ");
+lcd.setCursor(0, 1);
+lcd.print(utf8ToAscii(String(description))); // Converte e exibe a descrição do clima
 
   // Exibe no terminal serial para depuração
   Serial.println("Previsão do tempo:");
@@ -111,7 +136,7 @@ void getWeather() {
   Serial.print("Descrição: ");
   Serial.println(description);
 
-  delay(5000); // Exibe por 5 segundos
+  delay(2000); // Exibe por 5 segundos
 }
 
 
@@ -172,7 +197,7 @@ void showDateTime() {
   lcd.setCursor(3, 1);
   lcd.print(dateStr);
 
-  delay(5000); // Exibe a data e hora por 5 segundos antes de continuar
+  delay(1000); // Exibe a data e hora por 2 segundos antes de continuar
 }
 
 void getYoutubeSubscribers() {
@@ -183,9 +208,9 @@ void getYoutubeSubscribers() {
     lcd.setCursor(5, 0);
     lcd.print("Canal");
     
-    lcd.setCursor(1, 1);
-    lcd.print("Petter Money");
-    delay(5000); // Aguarda 5 segundos antes de exibir o próximo dado
+    lcd.setCursor(4, 1);
+    lcd.print("You Tube");
+    delay(2000); // Aguarda 2 segundos antes de exibir o próximo dado
     // Exibe subscritores no LCD
     lcd.clear();
     lcd.setCursor(0, 0);
